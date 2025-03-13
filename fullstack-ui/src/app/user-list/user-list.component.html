@@ -1,3 +1,26 @@
-@for (user of users; track user.id) {
-<div>User id: {{ user.id }}</div>
-}
+<div class="desktop-table">
+<table mat-table [dataSource]="users">
+  <mat-text-column name="id"></mat-text-column>
+  <mat-text-column name="name"></mat-text-column>
+  <mat-text-column name="username"></mat-text-column>
+  <mat-text-column name="address"></mat-text-column>
+  <mat-text-column name="phone"></mat-text-column>
+  <mat-text-column name="website"></mat-text-column>
+  <mat-text-column name="company"></mat-text-column>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="responsive-row"></tr>
+</table>
+</div>
+
+<div class="mobile-table">
+  @for (user of users; track user.id) {
+  <div><span class="row--label">Id:</span> {{ user.id }}</div>
+  <div><span class="row--label">Name:</span> {{ user.name }}</div>
+  <div><span class="row--label">Username:</span> {{ user.username }}</div>
+  <div><span class="row--label">Address:</span> {{ user.address }}</div>
+  <div><span class="row--label">Phone:</span> {{ user.phone }}</div>
+  <div><span class="row--label">Website:</span> {{ user.website }}</div>
+  <div><span class="row--label">Company:</span> {{ user.company }}</div>
+  }
+</div>
+

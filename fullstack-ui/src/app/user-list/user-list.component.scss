@@ -1,0 +1,19 @@
+.desktop-table {
+  display: none;
+
+  @media (min-width: 1280px) {
+    display: initial;
+  }
+}
+
+.mobile-table {
+  @media (min-width: 1280px) {
+    display: none;
+  }
+
+  .row {
+    &--label {
+      font-weight: 700;
+    }
+  }
+}

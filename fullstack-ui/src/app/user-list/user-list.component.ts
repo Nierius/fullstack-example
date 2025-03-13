@@ -1,21 +1,28 @@
 import { Component, OnInit } from '@angular/core';
+import { MatTableModule } from '@angular/material/table';
 import { User } from '@app/types';
 import { UserService } from '@app/user.service';
 import { take } from 'rxjs';
 
+type TableFriendlyUser = Omit<User, "address" | "company"> & { address: string, company: string }
+
 @Component({
   selector: 'app-user-list',
-  imports: [],
+  imports: [MatTableModule],
   templateUrl: './user-list.component.html',
   styleUrl: './user-list.component.scss'
 })
 export class UserListComponent implements OnInit {
-
-  users: User[] = []
+  users: TableFriendlyUser[] = []
+  displayedColumns = ["id", "name", "username", "address", "phone", "website", "company"]
 
   constructor(private readonly userService: UserService) { }
 
   ngOnInit(): void {
-    this.userService.getUsers().pipe(take(1)).subscribe((users) => this.users = users);
+    this.userService.getUsers().pipe(take(1)).subscribe((users) => this.users = users.map((user) => ({
+      ...user,
+      address: `${user.address.street} ${user.address.suite}, ${user.address.city}`,
+      company: `${user.company.name}`
+    })));
   }
 }
