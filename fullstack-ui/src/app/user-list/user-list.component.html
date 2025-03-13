@@ -1,1 +1,3 @@
-<p>user-list works!</p>
+@for (user of users; track user.id) {
+<div>User id: {{ user.id }}</div>
+}
