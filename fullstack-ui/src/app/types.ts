@@ -6,19 +6,21 @@ export interface User {
   username: string
   address: {
     street: string
-    suite: string
+    suite?: string
     city: string
     zipcode: string
-    geo: {
-      lat: string
-      lng: string
+    geo?: {
+      lat?: string
+      lng?: string
     }
   }
   phone: string
-  website: URL
+  website?: URL
   company: {
     name: string
-    catchPhrase: string
-    bs: string
+    catchPhrase?: string
+    bs?: string
   }
 }
+
+export type NewUser = Omit<User, "id">

@@ -1,8 +1,37 @@
-<h2 mat-dialog-title>Create user</h2>
-<mat-dialog-content>
-  Form here
-</mat-dialog-content>
-<mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close>Cancel</button>
-  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Submit</button>
-</mat-dialog-actions>
+<h2 mat-dialog-title>New user</h2>
+<form [formGroup]="userForm" (ngSubmit)="submitForm()">
+  <mat-dialog-content>
+    <app-form-field label="Name" [control]="userForm.controls.name"></app-form-field>
+    <app-form-field label="Username" [control]="userForm.controls.username"></app-form-field>
+
+    <fieldset formGroupName="address">
+      <legend>Address</legend>
+      <app-form-field label="Street" [control]="userForm.controls.address.controls.street"></app-form-field>
+      <app-form-field label="Suite" [control]="userForm.controls.address.controls.suite"></app-form-field>
+      <app-form-field label="City" [control]="userForm.controls.address.controls.city"></app-form-field>
+      <app-form-field label="ZIP Code" [control]="userForm.controls.address.controls.zipcode"></app-form-field>
+
+      <fieldset formGroupName="geo">
+        <legend>Geo Location</legend>
+        <app-form-field label="Latitude"
+          [control]="userForm.controls.address.controls.geo.controls.lat"></app-form-field>
+        <app-form-field label="Longitude"
+          [control]="userForm.controls.address.controls.geo.controls.lng"></app-form-field>
+      </fieldset>
+    </fieldset>
+
+    <app-form-field label="Phone" [control]="userForm.controls.phone"></app-form-field>
+    <app-form-field label="Website" [control]="userForm.controls.website" type="url"></app-form-field>
+
+    <fieldset formGroupName="company">
+      <legend>Company</legend>
+      <app-form-field label="Company Name" [control]="userForm.controls.company.controls.name"></app-form-field>
+      <app-form-field label="Catch Phrase" [control]="userForm.controls.company.controls.catchPhrase"></app-form-field>
+      <app-form-field label="BS" [control]="userForm.controls.company.controls.bs"></app-form-field>
+    </fieldset>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button type="submit" [disabled]="userForm.invalid">Save</button>
+  </mat-dialog-actions>
+</form>
