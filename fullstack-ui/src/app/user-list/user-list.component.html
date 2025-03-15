@@ -1,5 +1,5 @@
 <div class="action-wrapper">
-  <button mat-stroked-button><mat-icon>add</mat-icon>Create user</button>
+  <button mat-stroked-button (click)="openCreateUserDialog()"><mat-icon>add</mat-icon>Create user</button>
 </div>
 <div class="desktop-table">
 <table mat-table [dataSource]="users">

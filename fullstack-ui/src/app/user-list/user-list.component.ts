@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
+import { DialogService } from '@app/dialog.service';
 import { User } from '@app/types';
 import { UserService } from '@app/user.service';
 import { take } from 'rxjs';
@@ -18,7 +19,7 @@ export class UserListComponent implements OnInit {
   users: TableFriendlyUser[] = []
   displayedColumns = ["id", "name", "username", "address", "phone", "website", "company", "actions"]
 
-  constructor(private readonly userService: UserService) { }
+  constructor(private readonly userService: UserService, private readonly dialogService: DialogService) { }
 
   ngOnInit(): void {
     this.userService.getUsers().pipe(take(1)).subscribe((users) => this.users = users.map((user) => ({
@@ -30,5 +31,9 @@ export class UserListComponent implements OnInit {
 
   deleteUser(userId: string) {
     console.log(userId);
+  }
+
+  openCreateUserDialog() {
+    this.dialogService.openCreatUserDialog();
   }
 }
