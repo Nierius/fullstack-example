@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { NewUser, User } from '@app/types';
-import { BehaviorSubject, interval, Observable, shareReplay, Subject, switchMap, tap } from 'rxjs';
+import { BehaviorSubject, interval, Observable, of, shareReplay, Subject, switchMap, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -23,5 +23,14 @@ export class UserService {
   createUser(userData: NewUser): Observable<User> {
     // Post user data and refresh user listing
     return this.http.post<User>("localhost", userData).pipe(tap(() => this._userRefresh$.next()));
+  }
+
+  deleteUser(id: string): Observable<void> {
+    // Post user data and refresh user listing
+    return this.http.delete<void>("localhost", {
+      params: {
+        id
+      }
+    }).pipe(tap(() => this._userRefresh$.next()));
   }
 }
