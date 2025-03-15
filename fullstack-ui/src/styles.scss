@@ -2,6 +2,8 @@
 
 :root {
   --dark: #101414;
+  --dark-700: #272b2b;
+  --dark-300: #878989;
   --gap: 20px;
   --gap-small: 10px;
   --bold: 700;
@@ -17,4 +19,21 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 h1,h2,h3,h4,h5,h6 {
   margin: 0;
+}
+
+input {
+  color: var(--text-color);
+  background: var(--dark-700);
+  border: 1px solid var(--dark-300);
+  border-radius: 5px;
+
+  &:active {
+  border: 1px solid var(--dark-300);
+  }
+}
+
+.mat-mdc-dialog-container {
+  background: var(--dark);
+  border: 1px solid var(--text-color);
+  border-radius: 5px;
 }
