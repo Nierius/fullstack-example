@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { User } from '@app/types';
 import { UserService } from '@app/user.service';
@@ -8,7 +10,7 @@ type TableFriendlyUser = Omit<User, "address" | "company"> & { address: string, 
 
 @Component({
   selector: 'app-user-list',
-  imports: [MatTableModule],
+  imports: [MatTableModule, MatButtonModule, MatIconModule],
   templateUrl: './user-list.component.html',
   styleUrl: './user-list.component.scss'
 })
