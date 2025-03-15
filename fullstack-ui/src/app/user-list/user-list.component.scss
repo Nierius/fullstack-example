@@ -17,6 +17,7 @@
   }
 
   .card {
+    position: relative;
     padding: var(--gap-small);
     border: 1px solid var(--text-color);
     border-radius: 3px;
@@ -36,3 +37,11 @@
   padding: var(--gap);
 }
 }
+
+.delete-button {
+  position: absolute;
+  top: 0;
+  right: var(--gap-small);
+}
+
+

@@ -18,13 +18,15 @@
 <div class="mobile-table">
   @for (user of users; track user.id) {
     <div class="card">
-  <div class="row"><span class="row--label">Id:</span> {{ user.id }}</div>
+  <div class="row"><span class="row--label">Id:</span> {{ user.id }}
+    </div>
   <div class="row"><span class="row--label">Name:</span> {{ user.name }}</div>
   <div class="row"><span class="row--label">Username:</span> {{ user.username }}</div>
   <div class="row"><span class="row--label">Address:</span> {{ user.address }}</div>
   <div class="row"><span class="row--label">Phone:</span> {{ user.phone }}</div>
   <div class="row"><span class="row--label">Website:</span> {{ user.website }}</div>
   <div class="row"><span class="row--label">Company:</span> {{ user.company }}</div>
+  <button mat-icon-button class="delete-button"><mat-icon>delete</mat-icon></button>
     </div>
   }
 </div>
