@@ -1,6 +1,5 @@
-.app-area {
-  height: 100%;
-  width: 100%;
-  background: #101414;
-  color: #e0e3e2;
+.top-bar {
+  padding: var(--gap);
+  text-align: center;
+  border-bottom: 1px solid var(--text-color);
 }
