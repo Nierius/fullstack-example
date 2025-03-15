@@ -6,7 +6,7 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
   providedIn: 'root'
 })
 export class DialogService {
-  private _dialogRef?: MatDialogRef<any>
+  private _dialogRef?: MatDialogRef<unknown>
 
   constructor(private readonly dialog: MatDialog) { }
 

@@ -13,7 +13,7 @@ import { MatInputModule } from '@angular/material/input';
 export class FormFieldComponent {
   @Input() label?: string;
   @Input() control?: FormControl;
-  @Input() type: string = 'text';
+  @Input() type = 'text';
 
   get errorMessage(): string | null {
     if (this.control && this.control.errors && this.control.touched) {
