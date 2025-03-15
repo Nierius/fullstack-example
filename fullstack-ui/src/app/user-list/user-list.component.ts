@@ -16,7 +16,7 @@ type TableFriendlyUser = Omit<User, "address" | "company"> & { address: string, 
 })
 export class UserListComponent implements OnInit {
   users: TableFriendlyUser[] = []
-  displayedColumns = ["id", "name", "username", "address", "phone", "website", "company"]
+  displayedColumns = ["id", "name", "username", "address", "phone", "website", "company", "actions"]
 
   constructor(private readonly userService: UserService) { }
 
@@ -26,5 +26,9 @@ export class UserListComponent implements OnInit {
       address: `${user.address.street} ${user.address.suite}, ${user.address.city}`,
       company: `${user.company.name}`
     })));
+  }
+
+  deleteUser(userId: string) {
+    console.log(userId);
   }
 }

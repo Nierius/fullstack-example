@@ -39,9 +39,12 @@
 }
 
 .delete-button {
+  &__mobile {
+
   position: absolute;
   top: 0;
   right: var(--gap-small);
+}
 }
 
 
