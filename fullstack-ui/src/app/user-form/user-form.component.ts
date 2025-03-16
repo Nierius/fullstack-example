@@ -4,7 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { FormFieldComponent } from '@app/shared/form-field/form-field.component';
 import { NewUser } from '@app/types';
-import { UserService } from '@app/user.service';
+import { UserService } from '@app/services/user.service';
 import { ToastrService } from 'ngx-toastr';
 import { catchError, firstValueFrom, throwError } from 'rxjs';
 

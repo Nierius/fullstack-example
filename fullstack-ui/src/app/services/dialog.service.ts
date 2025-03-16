@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { UserFormComponent } from './user-form/user-form.component';
+import { UserFormComponent } from '../user-form/user-form.component';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 
 @Injectable({

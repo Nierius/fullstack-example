@@ -3,9 +3,9 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
-import { DialogService } from '@app/dialog.service';
+import { DialogService } from '@app/services/dialog.service';
 import { User } from '@app/types';
-import { UserService } from '@app/user.service';
+import { UserService } from '@app/services/user.service';
 import { ToastrService } from 'ngx-toastr';
 import { catchError, firstValueFrom, throwError } from 'rxjs';
 
