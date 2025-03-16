@@ -42,7 +42,7 @@ export class UserFormComponent {
 
   async submitForm() {
     const userFromForm: NewUser = {
-      name: '',
+      name: this.userForm.controls.name.value ?? '',
       username: this.userForm.controls.username.value ?? '',
       address: {
         street: this.userForm.controls.address.controls.street.value ?? '',
