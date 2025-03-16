@@ -13,9 +13,6 @@ export class DialogService {
   openCreatUserDialog() {
     this.terminateOldDialog()
     this._dialogRef = this.dialog.open(UserFormComponent);
-    this._dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog res ${result}`);
-    });
   }
 
   private terminateOldDialog() {

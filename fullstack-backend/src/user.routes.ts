@@ -6,7 +6,6 @@ import { validationResult } from 'express-validator';
 const BASE = '/users/';
 
 export function loadUserRoutes(app: Express) {
-  console.log("USER_VALIDATOR:", USER_VALIDATOR);
   app.get(BASE, handleGetUsers);
   app.post(BASE, USER_VALIDATOR, handleCreateUser);
   app.delete(BASE, handleDeleteUser);
