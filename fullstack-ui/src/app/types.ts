@@ -1,5 +1,6 @@
 export type URL = string
 
+// TODO: Make this shared between UI and backend
 export interface User {
   _id: string
   name: string

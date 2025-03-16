@@ -1,9 +1,9 @@
 import { body } from 'express-validator'
 import { ObjectId } from 'mongodb'
 
-// TODO: Commonize
 export type URL = string
 
+// TODO: Make this shared between UI and backend
 export interface User {
   _id: ObjectId
   name: string
