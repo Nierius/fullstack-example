@@ -1,7 +1,7 @@
 .desktop-table {
   display: none;
 
-  @media (min-width: 1280px) {
+  @media (width >= 1280px) {
     display: initial;
   }
 }
@@ -12,7 +12,7 @@
   gap: var(--gap);
   padding: 0 var(--gap-small) var(--gap);
 
-  @media (min-width: 1280px) {
+  @media (width >= 1280px) {
     display: none;
   }
 
@@ -33,7 +33,7 @@
 .action-wrapper {
   padding: var(--gap) var(--gap-small);
 
-  @media (min-width: 1280px) {
+  @media (width >= 1280px) {
     padding: var(--gap);
   }
 }
