@@ -1,6 +1,10 @@
 mat-dialog-content {
-  max-height: 80vh;
+  max-height: 70vh;
   overflow-y: auto;
+
+  @media (min-width: 1280px) {
+    max-height: 80vh;
+  }
 }
 
 fieldset {
