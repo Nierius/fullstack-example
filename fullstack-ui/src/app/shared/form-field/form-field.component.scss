@@ -1,8 +1,7 @@
-.invalid-field .mat-mdc-text-field-wrapper {
-  border: 1px solid red;
-  border-radius: 4px;
-}
-
 mat-form-field {
   padding: var(--gap-mini);
+}
+
+::ng-deep .mat-mdc-form-field-error-wrapper {
+  padding: 0;
 }

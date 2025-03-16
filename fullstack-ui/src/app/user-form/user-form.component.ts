@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { FormFieldComponent } from '@app/shared/form-field/form-field.component';
 import { NewUser } from '@app/types';
 import { UserService } from '@app/user.service';
-import { firstValueFrom } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
+import { catchError, firstValueFrom, throwError } from 'rxjs';
 
 @Component({
   imports: [MatDialogModule, MatButtonModule, ReactiveFormsModule, FormFieldComponent],
@@ -14,34 +15,34 @@ import { firstValueFrom } from 'rxjs';
 })
 export class UserFormComponent {
   userForm = new FormGroup({
-    name: new FormControl('', { validators: [Validators.required, Validators.minLength(3)] }),
-    username: new FormControl('', { validators: [Validators.required, Validators.minLength(3)] }),
+    name: new FormControl('', { validators: [Validators.required, Validators.minLength(3), Validators.maxLength(100)] }),
+    username: new FormControl('', { validators: [Validators.required, Validators.minLength(3), Validators.maxLength(100)] }),
     address: new FormGroup({
-      street: new FormControl('', { validators: [Validators.required] }),
-      suite: new FormControl(),
-      city: new FormControl('', { validators: [Validators.required] }),
+      street: new FormControl('', { validators: [Validators.required, Validators.maxLength(500)] }),
+      suite: new FormControl(undefined, { validators: [Validators.maxLength(500)] }),
+      city: new FormControl('', { validators: [Validators.required, Validators.maxLength(100)] }),
       zipcode: new FormControl('', {
-        validators: [Validators.required, Validators.pattern(/^\d.*$/)]
+        validators: [Validators.required, Validators.pattern(/^\d.*$/), Validators.maxLength(20)]
       }),
       geo: new FormGroup({
-        lat: new FormControl(),
-        lng: new FormControl()
+        lat: new FormControl(undefined, { validators: [Validators.pattern(/^\-?\d+(\.\d+)?$/), Validators.maxLength(50)] }),
+        lng: new FormControl(undefined, { validators: [Validators.pattern(/^\-?\d+(\.\d+)?$/), Validators.maxLength(50)] }),
       })
     }),
-    phone: new FormControl('', { validators: [Validators.required] }),
-    website: new FormControl(),
+    phone: new FormControl('', { validators: [Validators.required, Validators.pattern(/^\+?\d+$/), Validators.maxLength(50)] }),
+    website: new FormControl(undefined, { validators: [Validators.maxLength(200)] }),
     company: new FormGroup({
-      name: new FormControl('', { validators: [Validators.required] }),
-      catchPhrase: new FormControl(),
-      bs: new FormControl()
+      name: new FormControl('', { validators: [Validators.required, Validators.maxLength(100)] }),
+      catchPhrase: new FormControl(undefined, { validators: [Validators.maxLength(500)] }),
+      bs: new FormControl(undefined, { validators: [Validators.maxLength(100)] })
     })
   });
 
-  constructor(private readonly userService: UserService) { }
+  constructor(private readonly dialogRef: MatDialogRef<UserFormComponent>, private readonly userService: UserService, private readonly toastr: ToastrService) { }
 
   async submitForm() {
     const userFromForm: NewUser = {
-      name: this.userForm.controls.name.value ?? '',
+      name: '',
       username: this.userForm.controls.username.value ?? '',
       address: {
         street: this.userForm.controls.address.controls.street.value ?? '',
@@ -62,7 +63,10 @@ export class UserFormComponent {
       },
     }
 
-    console.log("User to save", userFromForm);
-    const res = await firstValueFrom(this.userService.createUser(userFromForm));
+    await firstValueFrom(this.userService.createUser(userFromForm).pipe(catchError((err) => {
+      this.toastr.error(err.error.message); return throwError(() => err)
+    })));
+    this.toastr.success("User created");
+    this.dialogRef.close();
   }
 }

@@ -30,7 +30,7 @@ async function handleCreateUser(req: Request, res: Response): Promise<void> {
 
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    res.status(400).json({ errors: errors.array() });
+    res.status(400).json({ message: errors.array().map((err) => err.msg).join(", ") });
     return;
   }
 
