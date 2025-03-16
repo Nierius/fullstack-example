@@ -34,17 +34,14 @@
   padding: var(--gap) var(--gap-small);
 
   @media (min-width: 1280px) {
-  padding: var(--gap);
-}
+    padding: var(--gap);
+  }
 }
 
 .delete-button {
   &__mobile {
-
-  position: absolute;
-  top: 0;
-  right: var(--gap-small);
+    position: absolute;
+    top: 0;
+    right: var(--gap-small);
+  }
 }
-}
-
-

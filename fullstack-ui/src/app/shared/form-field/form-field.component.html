@@ -1,7 +1,10 @@
 @if (control !== undefined) {
-<mat-form-field appearance="outline" [ngClass]="{'invalid-field': control.invalid && control.touched}">
-  <mat-label>{{ label }}</mat-label>
-  <input matInput [type]="type" [formControl]="control">
-  <mat-error *ngIf="errorMessage">{{ errorMessage }}</mat-error>
-</mat-form-field>
+  <mat-form-field
+    appearance="outline"
+    [ngClass]="{ 'invalid-field': control.invalid && control.touched }"
+  >
+    <mat-label>{{ label }}</mat-label>
+    <input matInput [type]="type" [formControl]="control" />
+    <mat-error *ngIf="errorMessage">{{ errorMessage }}</mat-error>
+  </mat-form-field>
 }

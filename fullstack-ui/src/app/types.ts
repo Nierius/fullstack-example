@@ -23,4 +23,4 @@ export interface User {
   }
 }
 
-export type NewUser = Omit<User, "_id">
+export type NewUser = Omit<User, '_id'>

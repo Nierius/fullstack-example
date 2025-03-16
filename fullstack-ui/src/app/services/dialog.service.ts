@@ -1,18 +1,18 @@
-import { Injectable } from '@angular/core';
-import { UserFormComponent } from '../user-form/user-form.component';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { Injectable } from '@angular/core'
+import { UserFormComponent } from '../user-form/user-form.component'
+import { MatDialog, MatDialogRef } from '@angular/material/dialog'
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DialogService {
   private _dialogRef?: MatDialogRef<unknown>
 
-  constructor(private readonly dialog: MatDialog) { }
+  constructor(private readonly dialog: MatDialog) {}
 
   openCreatUserDialog() {
     this.terminateOldDialog()
-    this._dialogRef = this.dialog.open(UserFormComponent);
+    this._dialogRef = this.dialog.open(UserFormComponent)
   }
 
   private terminateOldDialog() {

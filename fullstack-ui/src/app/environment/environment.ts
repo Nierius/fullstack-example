@@ -1,5 +1,5 @@
 interface Environment {
-  backendUrl: string,
+  backendUrl: string
 }
 
 export const ENVIRONMENT: Environment = {
