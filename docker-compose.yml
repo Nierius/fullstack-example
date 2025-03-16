@@ -1,0 +1,45 @@
+services:
+  frontend:
+    container_name: frontend
+    build:
+      context: ./fullstack-ui
+      dockerfile: Dockerfile
+    ports:
+      - "4200:80"  # Expose Angular app on port 4200
+    depends_on:
+      - backend
+    networks:
+      - fullstack-network
+
+  backend:
+    container_name: backend
+    build:
+      context: ./fullstack-backend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"  # Expose backend on port 3000
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/fullstack-db
+    depends_on:
+      - mongo
+    networks:
+      - fullstack-network
+
+  mongo:
+    container_name: mongo
+    image: mongo:latest
+    ports:
+      - "27017:27017"  # Expose MongoDB on port 27017
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - fullstack-network
+
+networks:
+  fullstack-network:
+    driver: bridge
+
+volumes:
+  mongo-data:
+    driver: local
+
