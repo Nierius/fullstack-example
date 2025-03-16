@@ -1,7 +1,7 @@
 export type URL = string
 
 export interface User {
-  id: string
+  _id: string
   name: string
   username: string
   address: {
@@ -23,4 +23,4 @@ export interface User {
   }
 }
 
-export type NewUser = Omit<User, "id">
+export type NewUser = Omit<User, "_id">

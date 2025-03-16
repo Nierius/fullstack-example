@@ -2,41 +2,38 @@
   <button mat-stroked-button (click)="openCreateUserDialog()"><mat-icon>add</mat-icon>Create user</button>
 </div>
 <div class="desktop-table">
-<table mat-table [dataSource]="users">
-  <mat-text-column name="id"></mat-text-column>
-  <mat-text-column name="name"></mat-text-column>
-  <mat-text-column name="username"></mat-text-column>
-  <mat-text-column name="address"></mat-text-column>
-  <mat-text-column name="phone"></mat-text-column>
-  <mat-text-column name="website"></mat-text-column>
-  <mat-text-column name="company"></mat-text-column>
+  <table mat-table [dataSource]="users">
+    <mat-text-column name="name"></mat-text-column>
+    <mat-text-column name="username"></mat-text-column>
+    <mat-text-column name="address"></mat-text-column>
+    <mat-text-column name="phone"></mat-text-column>
+    <mat-text-column name="website"></mat-text-column>
+    <mat-text-column name="company"></mat-text-column>
 
-  <ng-container matColumnDef="actions">
-    <th mat-header-cell *matHeaderCellDef>Delete</th>
-    <td mat-cell *matCellDef="let user">
-      <button mat-icon-button (click)="deleteUser(user.id)">
-        <mat-icon>delete</mat-icon>
-      </button>
-    </td>
-  </ng-container>
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="responsive-row"></tr>
-</table>
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Delete</th>
+      <td mat-cell *matCellDef="let user">
+        <button mat-icon-button (click)="deleteUser(user._id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="responsive-row"></tr>
+  </table>
 </div>
 
 <div class="mobile-table">
-  @for (user of users; track user.id) {
-    <div class="card">
-  <div class="row"><span class="row--label">Id:</span> {{ user.id }}
-    </div>
-  <div class="row"><span class="row--label">Name:</span> {{ user.name }}</div>
-  <div class="row"><span class="row--label">Username:</span> {{ user.username }}</div>
-  <div class="row"><span class="row--label">Address:</span> {{ user.address }}</div>
-  <div class="row"><span class="row--label">Phone:</span> {{ user.phone }}</div>
-  <div class="row"><span class="row--label">Website:</span> {{ user.website }}</div>
-  <div class="row"><span class="row--label">Company:</span> {{ user.company }}</div>
-  <button mat-icon-button class="delete-button__mobile" (click)="deleteUser(user.id)"><mat-icon>delete</mat-icon></button>
-    </div>
+  @for (user of users; track user._id) {
+  <div class="card">
+    <div class="row"><span class="row--label">Name:</span> {{ user.name }}</div>
+    <div class="row"><span class="row--label">Username:</span> {{ user.username }}</div>
+    <div class="row"><span class="row--label">Address:</span> {{ user.address }}</div>
+    <div class="row"><span class="row--label">Phone:</span> {{ user.phone }}</div>
+    <div class="row"><span class="row--label">Website:</span> {{ user.website }}</div>
+    <div class="row"><span class="row--label">Company:</span> {{ user.company }}</div>
+    <button mat-icon-button class="delete-button__mobile"
+      (click)="deleteUser(user._id)"><mat-icon>delete</mat-icon></button>
+  </div>
   }
 </div>
-

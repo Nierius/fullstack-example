@@ -2,12 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { NewUser, User } from '@app/types';
 import { BehaviorSubject, interval, Observable, switchMap, tap } from 'rxjs';
+import { ENVIRONMENT } from './environment/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  private readonly _apiBaseUrl = "https://jsonplaceholder.typicode.com"
+  private readonly _apiBaseUrl = ENVIRONMENT.backendUrl;
   private readonly _userRefresh$ = new BehaviorSubject<void>(undefined);
 
   constructor(private readonly http: HttpClient) {
@@ -22,12 +23,12 @@ export class UserService {
 
   createUser(userData: NewUser): Observable<User> {
     // Post user data and refresh user listing
-    return this.http.post<User>("localhost", userData).pipe(tap(() => this._userRefresh$.next()));
+    return this.http.post<User>(this._apiBaseUrl + "/users", userData).pipe(tap(() => this._userRefresh$.next()));
   }
 
   deleteUser(id: string): Observable<void> {
     // Post user data and refresh user listing
-    return this.http.delete<void>("localhost", {
+    return this.http.delete<void>(this._apiBaseUrl + "/users", {
       params: {
         id
       }
