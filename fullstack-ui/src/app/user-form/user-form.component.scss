@@ -1,0 +1,9 @@
+mat-dialog-content {
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+fieldset {
+  border: 1px solid var(--dark-300);
+  margin-bottom: var(--gap-mini);
+}

@@ -10,6 +10,7 @@ import { firstValueFrom } from 'rxjs';
 @Component({
   imports: [MatDialogModule, MatButtonModule, ReactiveFormsModule, FormFieldComponent],
   templateUrl: './user-form.component.html',
+  styleUrl: './user-form.component.scss'
 })
 export class UserFormComponent {
   userForm = new FormGroup({

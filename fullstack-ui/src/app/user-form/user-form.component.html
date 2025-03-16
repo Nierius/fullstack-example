@@ -3,6 +3,8 @@
   <mat-dialog-content>
     <app-form-field label="Name" [control]="userForm.controls.name"></app-form-field>
     <app-form-field label="Username" [control]="userForm.controls.username"></app-form-field>
+    <app-form-field label="Phone" [control]="userForm.controls.phone"></app-form-field>
+    <app-form-field label="Website" [control]="userForm.controls.website" type="url"></app-form-field>
 
     <fieldset formGroupName="address">
       <legend>Address</legend>
@@ -19,9 +21,6 @@
           [control]="userForm.controls.address.controls.geo.controls.lng"></app-form-field>
       </fieldset>
     </fieldset>
-
-    <app-form-field label="Phone" [control]="userForm.controls.phone"></app-form-field>
-    <app-form-field label="Website" [control]="userForm.controls.website" type="url"></app-form-field>
 
     <fieldset formGroupName="company">
       <legend>Company</legend>
