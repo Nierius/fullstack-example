@@ -1,4 +1,4 @@
-import { MongoClient, Document as MongoDoc } from 'mongodb';
+import { MongoClient, Document as MongoDoc, ObjectId } from 'mongodb';
 import { USERS_COLLECTION } from './collection';
 
 const DB_NAME = process.env["DB_NAME"] ?? "fullstack-db"
@@ -29,6 +29,17 @@ export async function createAndPrimeDbIfNotExists() {
   const usersToInsertRes = await fetch("https://jsonplaceholder.typicode.com/users");
   if (!usersToInsertRes.ok) throw "Failed to get users prime data";
 
-  users.insertMany(await usersToInsertRes.json());
+  let usersToInsert = await usersToInsertRes.json();
+  if (Array.isArray(usersToInsert)) {
+    usersToInsert = usersToInsert.map((usr) => ({
+      _id: new ObjectId(usr.id as string),
+      ...usr
+    }));
+    for (const usr of usersToInsert) {
+      delete usr.id;
+    }
+  }
+
+  users.insertMany(usersToInsert);
   console.debug("Primed DB with data");
 }
